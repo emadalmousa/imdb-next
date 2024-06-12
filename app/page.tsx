@@ -1,9 +1,44 @@
-import Image from "next/image";
+"use client"
+import { useEffect, useState } from 'react';
+import Results from "./components/Results";
+import { useSearchParams } from 'next/navigation';
+import Loading from './loading';
+
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 export default function Home() {
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(true); // Zustand für das Laden
+  const searchParams = useSearchParams();
+  const genre = searchParams.get("genre") || 'fetchTrending';
+  const endpoint = genre === 'fetchTopRated' ? `movie/top_rated` : `trending/all/week`;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`https://api.themoviedb.org/3/${endpoint}?api_key=${API_KEY}&language=en-US&page=1`);
+        if (!res.ok) {
+          throw new Error("Anfrage fehlgeschlagen mit Statuscode: " + res.status);
+        }
+        const data = await res.json();
+        setResults(data.results);
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Daten:', error);
+      } finally {
+        setLoading(false); // Laden abgeschlossen
+      }
+    };
+
+    setTimeout(fetchData, 1); 
+  }, [endpoint]);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Home
+      {loading ? (
+        <Loading />
+      ) : (
+        <Results results={results} />
+      )}
     </main>
   );
 }
