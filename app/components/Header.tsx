@@ -10,7 +10,7 @@ const Header = () => {
         <div className='flex justify-between items-center p-3'>
             <div className='flex gap-4'>
                 <MenuItem title="home" address="/" Icon={AiFillHome} ></MenuItem>
-                <MenuItem title="about" address="/about" Icon={BsFillInfoCircleFill} ></MenuItem>
+                {/* <MenuItem title="about" address="/about" Icon={BsFillInfoCircleFill} ></MenuItem> */}
             </div>
             <div className='flex gap-3 items-center'>
                 <DarkModeSwitsch />
