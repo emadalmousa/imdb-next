@@ -30,7 +30,7 @@ export default function Home() {
     };
 
     setTimeout(fetchData, 1); 
-  }, [endpoint,loading]);
+  }, [endpoint]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
