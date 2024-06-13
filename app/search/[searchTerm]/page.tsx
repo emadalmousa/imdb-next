@@ -20,7 +20,7 @@ const Page = ({ params }: { params: { searchTerm: string } }) => {
                 const data = await res.json();
                 setResults(data.results);
             } catch (error) {
-                setError(error.message);
+                
             } finally {
                 setLoading(false);
             }
