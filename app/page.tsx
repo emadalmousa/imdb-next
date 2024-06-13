@@ -2,11 +2,12 @@
 import { useEffect, useState } from 'react';
 import Results from "./components/Results";
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react'
 import Loading from './loading';
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
-export default function Home() {
+function Search() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true); // Zustand für das Laden
   const searchParams = useSearchParams();
@@ -41,4 +42,13 @@ export default function Home() {
       )}
     </main>
   );
+
+}
+export default function Home() {
+  return (
+    // You could have a loading skeleton as the `fallback` too
+    <Suspense>
+      <Search />
+    </Suspense>
+  )
 }
