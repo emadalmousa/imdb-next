@@ -1,3 +1,4 @@
+import Inhalt from '@/app/components/Inhalt';
 import Image from 'next/image';
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
@@ -8,6 +9,7 @@ const MoviePage = async ({ params }: { params: { id: string } }) => {
   const movie = await res.json();
 
   return (
+    
     <div className='w-full'>
       <div className='p-4 md:pt-8 flex flex-col md:flex-row content-center max-w-6xl mx-auto md:space-x-6'>
         <Image
