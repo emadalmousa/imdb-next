@@ -5,7 +5,11 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react'
 import Loading from '../loading';
 
+<<<<<<< HEAD
 const API_KEY = '3331ad998364698fd744ce1d30b48ffb';
+=======
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+>>>>>>> 4090bc839d4503abb48eb8ffc20467cb6ad8e9a9
 
 function Search() {
   const [results, setResults] = useState([]);
